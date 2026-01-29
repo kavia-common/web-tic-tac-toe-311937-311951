@@ -1,104 +1,237 @@
-/* CSS Variables for Theme Management */
+/* Theme (light, modern) aligned with style guide */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
-}
+  --bg: #f9fafb;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #64748b;
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+  --primary: #3b82f6;
+  --accent: #06b6d4;
+  --danger: #ef4444;
+
+  --border: rgba(15, 23, 42, 0.12);
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+  --radius: 16px;
 }
 
 .App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background: radial-gradient(1200px 600px at 50% 0%, rgba(59, 130, 246, 0.12), transparent 55%),
+    radial-gradient(900px 500px at 15% 20%, rgba(6, 182, 212, 0.10), transparent 50%),
+    var(--bg);
+  color: var(--text);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: var(--bg-secondary);
+.ttt-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 32px 16px;
+  gap: 18px;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.ttt-header {
+  text-align: center;
+  max-width: 520px;
+}
+
+.ttt-badge {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+  border-radius: 999px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.ttt-title {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
+.ttt-subtitle {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.ttt-card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 18px 16px;
+}
+
+.ttt-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.ttt-status__label {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ttt-status__hint {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 10px;
+  background: rgba(2, 6, 23, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.ttt-square {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #ffffff;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  display: grid;
+  place-items: center;
+
+  font-weight: 800;
+  font-size: clamp(32px, 7vw, 44px);
+  line-height: 1;
+  color: var(--text);
+
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.ttt-square:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(59, 130, 246, 0.55);
+  box-shadow: 0 10px 22px rgba(59, 130, 246, 0.12);
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+.ttt-square:active:not(:disabled) {
+  transform: translateY(0px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.ttt-square:disabled {
+  cursor: not-allowed;
+  opacity: 0.95;
+}
+
+.ttt-square--win {
+  border-color: rgba(6, 182, 212, 0.8);
+  background: linear-gradient(180deg, rgba(6, 182, 212, 0.10), rgba(59, 130, 246, 0.08));
+  box-shadow: 0 12px 26px rgba(6, 182, 212, 0.16);
+}
+
+.ttt-controls {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.ttt-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+
+.ttt-btn--primary {
+  color: white;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.18);
+}
+
+.ttt-btn--primary:hover {
+  transform: translateY(-1px);
+  opacity: 0.98;
+}
+
+.ttt-btn--primary:active {
+  transform: translateY(0px);
+}
+
+.ttt-legend {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ttt-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.ttt-pill--x::before,
+.ttt-pill--o::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.ttt-pill--x::before {
+  background: var(--primary);
+}
+
+.ttt-pill--o::before {
+  background: var(--accent);
+}
+
+.ttt-footer {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+@media (max-width: 420px) {
+  .ttt-card {
+    padding: 14px 14px 12px;
   }
-  to {
-    transform: rotate(360deg);
+  .ttt-board {
+    gap: 8px;
+    padding: 8px;
   }
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
+  .ttt-title {
+    font-size: 30px;
   }
 }
